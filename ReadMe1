@@ -1,0 +1,44 @@
+Template CNS LAB record:
+AIM:
+THEORY:
+Algorithm Structure:
+SOURCE CODE:
+OUTPUT:
+
+List of Experiments:
+-------------------------
+1. Write a C program to generate the truth table for the XOR (⊕) operation.
+
+2. Write a C program to generate the truth table for the XOR (⊕) operation on 4-bit binary numbers.
+
+3. Write a C program that contains a string (char pointer) with a value ‘Hello world’. The program should XOR each character in this string with 0 and display the result.
+
+4. Write a C program that contains a string (char pointer) with a value ‘Hello world’. The program should AND or and XOR each character in this string with 127 and display the result.
+
+5. Write a C program to perform encryption and decryption using the following algorithms 
+		a. Ceaser cipher b. Substitution cipher c. Hill Cipher
+
+6. Write a program on a 5-bit Linear Feedback Shift Register (LFSR) using a primitive polynomial.
+Primitive Polynomial Choice : For a 5-bit LFSR, a common primitive polynomial is: x^5+x^2+1, which corresponds to feedback taps at bit positions 5 and 2.
+
+7. Write a C/Java program to implement the DES algorithm logic.
+
+8. Write a C program to implement the Rijndael/AES algorithm logic.		
+
+9. Write a C/Java program to implement the RC4 algorithm logic.
+
+############################################
+
+10.Write the RC4 logic in Java Using Java cryptography; encrypt the text “Hello world” using Blowfish. Create your own key using Java key tool.
+
+11. Write a C program to implement the Blowfish algorithm logic.
+
+12. Write a Java program to implement the RSA algorithm.
+
+13. Implement the Diffie-Hellman Key Exchange mechanism using HTML and JavaScript.
+
+14. Calculate the message digest of a text using the SHA-1 algorithm in JAVA.
+
+15. Calculate the message digest of a text using the MD5 algorithm in JAVA
+
+
