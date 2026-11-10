@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head><title>Diffie-Hellman Key Exchange</title></head>
+<body>
+<script>
+// a^b mod p using BigInt and square-and-multiply, so large numbers never overflow
+function modPow(a, b, p) {
+  let r = 1n;
+  a %= p;
+  while (b > 0n) {
+    if (b & 1n) r = r * a % p;   // if the current bit of b is 1, multiply it in
+    a = a * a % p;               // square the base
+    b >>= 1n;                    // move to the next bit
+  }
+  return r;
+}
+
+// Step 1: Both persons agree on public values P (prime) and G (primitive root)
+const P = BigInt(prompt("Enter a prime number P:"));
+const G = BigInt(prompt("Enter a primitive root G:"));
+
+// Step 2: Each person chooses a private key
+const a = BigInt(prompt("Enter the private key for Alice (a):"));
+const b = BigInt(prompt("Enter the private key for Bob (b):"));
+
+// Step 3: Each computes a public key and sends it to the other
+const A = modPow(G, a, P);   // Alice: G^a mod P
+const B = modPow(G, b, P);   // Bob:   G^b mod P
+
+// Step 4: Each computes the shared secret key
+const ka = modPow(B, a, P);  // Alice: B^a mod P
+const kb = modPow(A, b, P);  // Bob:   A^b mod P
+
+// Step 5: Display results
+document.write(`P = ${P}, G = ${G}<br>`);
+document.write(`Alice sends A = ${A}, Bob sends B = ${B}<br>`);
+document.write(`Secret key for Alice is: ${ka}<br>`);
+document.write(`Secret key for Bob is: ${kb}<br>`);
+document.write(ka === kb ? "Keys match!" : "Keys do not match!");
+
+/*
+ALGORITHM:
+1. Start.
+2. Read prime P and primitive root G.
+3. Read Alice's private key a and Bob's private key b.
+4. A = G^a mod P (Alice's public key), B = G^b mod P (Bob's public key).
+5. Alice's secret = B^a mod P, Bob's secret = A^b mod P.
+6. Display both secrets (they are equal).
+7. Stop.
+
+modPow (square-and-multiply):
+1. r = 1, a = a mod p.
+2. While b > 0: if the last bit of b is 1, r = r*a mod p; a = a*a mod p; b = b/2.
+3. Return r.
+
+WHY IT WORKS FOR ALL INPUTS:
+- BigInt (the "n" suffix) has no size limit. Plain Math.pow
+  loses precision above 2^53 and would give wrong keys for bigger values.
+- Every step is reduced mod P, so numbers stay small and it is fast even
+  for very large exponents.
+- Non-numeric input makes BigInt() throw an error and nothing is shown.
+*/
+</script>
+</body>
+</html>
